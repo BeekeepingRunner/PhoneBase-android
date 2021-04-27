@@ -1,0 +1,1 @@
+# Simple SQLite based app, which stores info about various phone models
