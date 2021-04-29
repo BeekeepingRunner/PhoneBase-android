@@ -28,7 +28,7 @@ public class Phone {
     @ColumnInfo(name = "site")
     private String site;
 
-    public Phone(long id, @NonNull String manufacturer, @NonNull String model,
+    public Phone(@NonNull String manufacturer, @NonNull String model,
                  @NonNull String androidVersion, @NonNull String site) {
         this.id = id;
         this.manufacturer = manufacturer;
