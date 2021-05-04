@@ -1,6 +1,6 @@
 package com.example.phonebase;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +29,8 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
         }
     }
 
-    public PhoneListAdapter(Context context) {
-        this.layoutInflater = LayoutInflater.from(context);
+    public PhoneListAdapter(Activity context) {
+        this.layoutInflater = context.getLayoutInflater();
         this.phoneList = null;
     }
 
@@ -44,10 +44,11 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
     }
 
     // Fills each row with data from source, every time a row has to be displayed
-    // ...Is it necessary here?
     @Override
     public void onBindViewHolder(@NonNull PhoneViewHolder holder, int position) {
 
+        holder.producerTextView.setText(phoneList.get(position).getManufacturer());
+        holder.modelTextView.setText(phoneList.get(position).getModel());
     }
 
     @Override
