@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PhoneBase</string>
-    <string name="defaultProducerText">Producer</string>
+    <string name="defaultProducerText">Producent</string>
     <string name="defaultModelText">Model</string>
 </resources>

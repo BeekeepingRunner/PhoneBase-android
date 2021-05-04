@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/* Abstract class (room lib. auto-generates implementation) representing data base.
+/* Abstract class (room lib. auto-generates implementation) representing database.
    Enables:
    - access to the DAO
    - access to the reference to the single instance of db object
@@ -47,7 +47,8 @@ public abstract class PhoneRoomDatabase extends RoomDatabase {
 
     // handles callback associated with DB events (e.g. onCreate, onOpen)
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        // First DB creation
+
+        // First creation of a DB and its initial content
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
