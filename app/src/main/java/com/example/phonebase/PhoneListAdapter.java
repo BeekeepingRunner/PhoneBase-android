@@ -13,13 +13,13 @@ import java.util.List;
 
 public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.PhoneViewHolder> {
 
-    LayoutInflater layoutInflater;
-    List<Phone> phoneList;
+    private LayoutInflater layoutInflater;
+    private List<Phone> phoneList;
 
     class PhoneViewHolder extends RecyclerView.ViewHolder {
 
-        TextView producerTextView;
-        TextView modelTextView;
+        private TextView producerTextView;
+        private TextView modelTextView;
 
         public PhoneViewHolder(@NonNull View itemView) {
             super(itemView);
