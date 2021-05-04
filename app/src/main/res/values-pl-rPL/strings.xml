@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PhoneBase</string>
-    <string name="defaultProducerText">Producent</string>
-    <string name="defaultModelText">Model</string>
+    <string name="default_producer_text">Producent</string>
+    <string name="default_model_text">Model</string>
+    <string name="clear_all_data">Usuń wszystko</string>
 </resources>
