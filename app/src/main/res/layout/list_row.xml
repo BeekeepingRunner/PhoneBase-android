@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="start"
-        android:text="@string/defaultProducerText" />
+        android:text="@string/default_producer_text" />
 
     <TextView
         android:id="@+id/modelTextView"
@@ -18,5 +18,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="end"
-        android:text="@string/defaultModelText" />
+        android:text="@string/default_model_text" />
 </LinearLayout>
