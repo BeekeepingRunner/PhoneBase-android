@@ -59,7 +59,7 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
 
     // Enables update of the data in the adapter, and in consequence, the data displayed in the
     // RecyclerView
-    public void setElementList(List<Phone> changedPhoneList) {
+    public void setPhoneList(List<Phone> changedPhoneList) {
         this.phoneList = changedPhoneList;
         notifyDataSetChanged();
     }
