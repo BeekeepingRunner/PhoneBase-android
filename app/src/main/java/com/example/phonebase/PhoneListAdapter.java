@@ -1,5 +1,6 @@
 package com.example.phonebase;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
     @Override
     public PhoneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View row = layoutInflater.inflate(R.layout.list_row, null);
+        View row = layoutInflater.inflate(R.layout.list_row, parent, false);
         return new PhoneViewHolder(row);
     }
 

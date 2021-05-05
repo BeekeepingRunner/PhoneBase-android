@@ -1,0 +1,15 @@
+[33m426e0ca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m change adapter fields modifiers to private
+[33mdc13e00[m[33m ([m[1;31morigin/master[m[33m)[m set menu and data removal option in the main activity
+[33m83c42b7[m create main activity menu layout
+[33m92bd6a1[m minor fixes
+[33m288004c[m set recyclerview, adapter and viewmodel in the main activity
+[33m87e13b1[m add RecyclerView to the main activity layout
+[33m8474b0d[m make RecyclerView adapter
+[33ma09d249[m make a layout for a data list row
+[33me98af45[m make PhoneViewModel
+[33m0c584f3[m make PhoneRepository
+[33mc7cdee0[m make PhoneRoomDatabase class with initial DB content creation
+[33me0514f6[m make Phone DAO
+[33m9fef2b1[m make Phone (entity) class
+[33mc0a0047[m Add room library to the project
+[33m130af4f[m Initial commit, empty Activity Android project

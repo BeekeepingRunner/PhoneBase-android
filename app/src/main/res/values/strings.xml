@@ -3,4 +3,5 @@
     <string name="default_producer_text">Producer</string>
     <string name="default_model_text">Model</string>
     <string name="clear_all_data">Clear all data</string>
+    <string name="manufacturer_input_label">Manufacturer</string>
 </resources>

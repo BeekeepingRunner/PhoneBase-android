@@ -17,13 +17,14 @@ public class MainActivity extends AppCompatActivity {
 
     private PhoneViewModel phoneViewModel;
     private PhoneListAdapter phoneListAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         phoneListAdapter = new PhoneListAdapter(this);
 
         recyclerView.setAdapter(phoneListAdapter);
@@ -31,12 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         phoneViewModel = new ViewModelProvider(this).get(PhoneViewModel.class);
 
-        phoneViewModel.getAllPhones().observe(this, new Observer<List<Phone>>() {
-            @Override
-            public void onChanged(List<Phone> phones) {
-                phoneListAdapter.setPhoneList(phones);
-            }
-        });
+        phoneViewModel.getAllPhones().observe(this,
+                phones -> phoneListAdapter.setPhoneList(phones));
     }
 
     @Override
