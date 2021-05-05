@@ -5,5 +5,10 @@
     <string name="default_model_text">Model</string>
     <string name="clear_all_data">Usuń wszystko</string>
     <string name="manufacturer_input_label">Producent</string>
-
+    <string name="model_input_label">Model</string>
+    <string name="android_input_label">Wersja Android</string>
+    <string name="website_input_label">Strona</string>
+    <string name="website_button">STRONA</string>
+    <string name="cancel_button">ANULUJ</string>
+    <string name="save_button">ZAPISZ</string>
 </resources>

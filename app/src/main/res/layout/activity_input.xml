@@ -7,23 +7,103 @@
     android:layout_margin="15dp">
 
     <TableRow
-        android:id="@+id/row1"
+        android:id="@+id/inputRowManufacturer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/label1"
+            android:id="@+id/inputLabelManufacturer"
+            android:layout_span="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/manufacturer_input_label">
         </TextView>
         <EditText
-            android:id="@+id/editText1"
-            android:layout_span="2"
+            android:id="@+id/editTextManufacturer"
+            android:layout_span="3"
             android:layout_width="wrap_content"
-            android:text=""
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="">
         </EditText>
+    </TableRow>
+    <TableRow
+        android:id="@+id/inputRowModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/inputLabelModel"
+            android:layout_span="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/model_input_label">
+        </TextView>
+        <EditText
+            android:id="@+id/editTextModel"
+            android:layout_span="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="">
+        </EditText>
+    </TableRow>
+    <TableRow
+        android:id="@+id/inputRowAndroid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/inputLabelAndroid"
+            android:layout_span="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/android_input_label">
+        </TextView>
+        <EditText
+            android:id="@+id/editTextAndroid"
+            android:layout_span="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="">
+        </EditText>
+    </TableRow>
+    <TableRow
+        android:id="@+id/inputRowWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/inputLabelWebsite"
+            android:layout_span="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/website_input_label">
+        </TextView>
+        <EditText
+            android:id="@+id/editTextWebsite"
+            android:layout_span="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="">
+        </EditText>
+    </TableRow>
+    <TableRow
+        android:id="@+id/inputRowButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@string/website_button" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@string/cancel_button" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_button" />
 
     </TableRow>
-
 </TableLayout>
