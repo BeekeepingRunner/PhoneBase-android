@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton insertButton;
 
     public static final int INPUT_ACTIVITY_REQUEST = 1;
+
+    public static final String PHONE_MANUFACTURER_INPUT     = "manufacturer_input";
+    public static final String PHONE_MODEL_INPUT            = "model_input";
+    public static final String PHONE_ANDROID_VERSION_INPUT  = "android_input";
+    public static final String PHONE_WEBSITE_INPUT          = "website_input";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +85,17 @@ public class MainActivity extends AppCompatActivity {
 
     // Gets data about a new Phone from the Input Activity
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
-            // get data ...
+            assert data != null;
+
+            // get data!
+            String manufacturer = data.getStringExtra(PHONE_MANUFACTURER_INPUT);
+            String model = data.getStringExtra(PHONE_MODEL_INPUT);
+            String android = data.getStringExtra(PHONE_ANDROID_VERSION_INPUT);
+            String website = data.getStringExtra(PHONE_WEBSITE_INPUT);
         }
         else if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_CANCELED) {
             // do nothing
