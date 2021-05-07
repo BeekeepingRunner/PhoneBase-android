@@ -7,9 +7,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -19,10 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private PhoneListAdapter phoneListAdapter;
     private RecyclerView recyclerView;
 
+    private FloatingActionButton insertButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set RecyclerView, its adapter and ViewModel for display of phone collection
 
         recyclerView = findViewById(R.id.recyclerView);
         phoneListAdapter = new PhoneListAdapter(this);
@@ -34,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         phoneViewModel.getAllPhones().observe(this,
                 phones -> phoneListAdapter.setPhoneList(phones));
+
+        setInsertionButton();
     }
 
     @Override
@@ -52,5 +62,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setInsertionButton() {
+        insertButton = findViewById(R.id.fabMain);
+        insertButton.setOnClickListener((View v) -> {
+            Intent intent = new Intent(MainActivity.this, InputActivity.class);
+            startActivity(intent);
+        });
     }
 }
