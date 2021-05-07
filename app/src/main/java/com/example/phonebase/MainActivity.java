@@ -1,6 +1,7 @@
 package com.example.phonebase;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private FloatingActionButton insertButton;
+
+    public static final int INPUT_ACTIVITY_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +67,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // FAB (FloatingActionButton) causes start of the Input Activity for the user to enter data
+    // about a new phone
     private void setInsertionButton() {
         insertButton = findViewById(R.id.fabMain);
         insertButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(MainActivity.this, InputActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, INPUT_ACTIVITY_REQUEST);
         });
+    }
+
+    // Gets data about a new Phone from the Input Activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+            // get data ...
+        }
+        else if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_CANCELED) {
+            // do nothing
+        }
     }
 }
