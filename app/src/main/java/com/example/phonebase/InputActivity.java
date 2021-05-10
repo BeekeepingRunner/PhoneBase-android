@@ -76,19 +76,19 @@ public class InputActivity extends AppCompatActivity {
         String website = websiteEditText.getText().toString().trim();
 
         if (TextUtils.isEmpty(manufacturer)) {
-            manufacturerEditText.setError("Manufacturer name cannot be empty");
+            manufacturerEditText.setError(getString(R.string.manufacturer_not_empty));
             return false;
         }
         if (TextUtils.isEmpty(model)) {
-            modelEditText.setError("Model name cannot be empty");
+            modelEditText.setError(getString(R.string.model_not_empty));
             return false;
         }
         if (TextUtils.isEmpty(androidVersion)) {
-            androidVersionEditText.setError("Android version cannot be empty");
+            androidVersionEditText.setError(getString(R.string.android_not_empty));
             return false;
         }
         if (TextUtils.isEmpty(website)) {
-            websiteEditText.setError("Website field cannot be empty");
+            websiteEditText.setError(getString(R.string.website_not_empty));
             return false;
         }
 

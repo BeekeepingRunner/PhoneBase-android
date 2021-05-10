@@ -11,4 +11,8 @@
     <string name="website_button">STRONA</string>
     <string name="cancel_button">ANULUJ</string>
     <string name="save_button">ZAPISZ</string>
+    <string name="manufacturer_not_empty">Nazwa producenta nie może być pusta</string>
+    <string name="model_not_empty">Nazwa modelu nie może być pusta</string>
+    <string name="android_not_empty">Wersja android nie może być pusta</string>
+    <string name="website_not_empty">Strona www nie może być pusta</string>
 </resources>
