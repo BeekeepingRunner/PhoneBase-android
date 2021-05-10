@@ -21,6 +21,12 @@ public class PhoneRepository {
         mAllPhones = mPhoneDao.getAlphabetizedElements();
     }
 
+    void insert(Phone phone) {
+        PhoneRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPhoneDao.insert(phone);
+        });
+    }
+
     LiveData<List<Phone>> getAllPhones() {
         return mAllPhones;
     }
