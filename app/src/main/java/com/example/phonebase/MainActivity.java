@@ -91,11 +91,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
             assert data != null;
 
-            // get data!
-            String manufacturer = data.getStringExtra(PHONE_MANUFACTURER_INPUT);
-            String model = data.getStringExtra(PHONE_MODEL_INPUT);
-            String android = data.getStringExtra(PHONE_ANDROID_VERSION_INPUT);
-            String website = data.getStringExtra(PHONE_WEBSITE_INPUT);
+            // save new phone to DB
+            Phone phone = new Phone(
+                    data.getStringExtra(PHONE_MANUFACTURER_INPUT),
+                    data.getStringExtra(PHONE_MODEL_INPUT),
+                    data.getStringExtra(PHONE_ANDROID_VERSION_INPUT),
+                    data.getStringExtra(PHONE_WEBSITE_INPUT)
+            );
+            phoneViewModel.insert(phone);
         }
         else if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_CANCELED) {
             // do nothing

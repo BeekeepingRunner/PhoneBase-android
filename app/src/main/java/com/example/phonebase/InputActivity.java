@@ -52,9 +52,9 @@ public class InputActivity extends AppCompatActivity {
 
             Intent intent = new Intent();
             intent.putExtra(MainActivity.PHONE_MANUFACTURER_INPUT, manufacturerEditText.getText().toString());
-            intent.putExtra(MainActivity.PHONE_MODEL_INPUT, modelEditText.getText());
-            intent.putExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT, androidVersionEditText.getText());
-            intent.putExtra(MainActivity.PHONE_WEBSITE_INPUT, websiteEditText.getText());
+            intent.putExtra(MainActivity.PHONE_MODEL_INPUT, modelEditText.getText().toString());
+            intent.putExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT, androidVersionEditText.getText().toString());
+            intent.putExtra(MainActivity.PHONE_WEBSITE_INPUT, websiteEditText.getText().toString());
             setResult(RESULT_OK, intent);
             finish();
         });

@@ -23,7 +23,11 @@ public class PhoneViewModel extends AndroidViewModel {
         mAllPhones = mRepository.getAllPhones();
     }
 
-    LiveData<List<Phone>> getAllPhones() {
+    public void insert(Phone phone) {
+        mRepository.insert(phone);
+    }
+
+    public LiveData<List<Phone>> getAllPhones() {
         return mAllPhones;
     }
 
