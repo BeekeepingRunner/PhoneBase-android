@@ -26,7 +26,8 @@ public class InputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_input);
 
         setEditTextsReferences();
-        setButtons();
+        setCancelButton();
+        setSaveButton();
     }
 
     void setEditTextsReferences() {
@@ -36,8 +37,8 @@ public class InputActivity extends AppCompatActivity {
         websiteEditText = findViewById(R.id.editTextWebsite);
     }
 
-    void setButtons() {
-        // return to the main activity
+    // Cancel button returns to the main activity
+    void setCancelButton() {
         cancelButton = findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener((View v) -> {
 
@@ -45,8 +46,10 @@ public class InputActivity extends AppCompatActivity {
             setResult(RESULT_CANCELED, intent);
             finish();
         });
+    }
 
-        // pass entered data to the main activity
+    // After clicking save button, entered data is passed to the main activity
+    void setSaveButton() {
         saveButton = findViewById(R.id.save_button);
         saveButton.setOnClickListener((View v) -> {
 
