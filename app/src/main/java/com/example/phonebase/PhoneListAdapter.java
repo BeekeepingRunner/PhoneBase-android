@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,17 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
     private LayoutInflater layoutInflater;
     private List<Phone> phoneList;
 
-    class PhoneViewHolder extends RecyclerView.ViewHolder {
+    private OnItemClickListener mOnItemClickListener;
+
+    public PhoneListAdapter(Activity context) {
+        this.layoutInflater = context.getLayoutInflater();
+        this.phoneList = null;
+        // activity will be informed about phone selection
+        mOnItemClickListener = (OnItemClickListener) context;
+    }
+
+    class PhoneViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
 
         private TextView producerTextView;
         private TextView modelTextView;
@@ -27,12 +38,19 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.Phon
 
             producerTextView = itemView.findViewById(R.id.producerTextView);
             modelTextView = itemView.findViewById(R.id.modelTextView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int rowNumber = getAdapterPosition();
+            mOnItemClickListener.onItemClickListener(phoneList.get(rowNumber));
         }
     }
 
-    public PhoneListAdapter(Activity context) {
-        this.layoutInflater = context.getLayoutInflater();
-        this.phoneList = null;
+    // Implemented by the main activity, it informs which element has been chosen
+    interface OnItemClickListener {
+        void onItemClickListener(Phone phone);
     }
 
     // Creates main layout element and returns ViewHolder for each created row

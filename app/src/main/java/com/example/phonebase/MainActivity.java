@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PhoneListAdapter.OnItemClickListener {
 
     private PhoneViewModel phoneViewModel;
     private PhoneListAdapter phoneListAdapter;
@@ -103,5 +103,11 @@ public class MainActivity extends AppCompatActivity {
         else if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_CANCELED) {
             // do nothing
         }
+    }
+
+    @Override
+    public void onItemClickListener(Phone phone) {
+
+        
     }
 }
