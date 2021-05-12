@@ -27,6 +27,12 @@ public class PhoneRepository {
         });
     }
 
+    void update(Phone phone) {
+        PhoneRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPhoneDao.update(phone);
+        });
+    }
+
     LiveData<List<Phone>> getAllPhones() {
         return mAllPhones;
     }

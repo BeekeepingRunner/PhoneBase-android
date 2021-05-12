@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public interface PhoneDao {
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     void insert(Phone phone);
+
+    @Update(onConflict = OnConflictStrategy.ABORT)
+    void update(Phone phone);
 
     @Query("DELETE FROM phone")
     void deleteAll();
