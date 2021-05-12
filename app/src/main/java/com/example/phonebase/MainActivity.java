@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         public static final int EDIT_PHONE = 2;
     }
 
+    public static final String PHONE_ID = "phoneId";
     public static final String PHONE_MANUFACTURER_INPUT     = "manufacturer_input";
     public static final String PHONE_MODEL_INPUT            = "model_input";
     public static final String PHONE_ANDROID_VERSION_INPUT  = "android_input";
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
     public void onItemClickListener(Phone phone) {
 
         Intent intent = new Intent(MainActivity.this, InputActivity.class);
+        intent.putExtra(PHONE_ID, phone.getId());
         intent.putExtra(PHONE_MANUFACTURER_INPUT, phone.getManufacturer());
         intent.putExtra(PHONE_MODEL_INPUT, phone.getModel());
         intent.putExtra(PHONE_ANDROID_VERSION_INPUT, phone.getAndroidVersion());
