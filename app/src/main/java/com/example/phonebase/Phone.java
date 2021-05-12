@@ -3,6 +3,7 @@ package com.example.phonebase;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "phone")
@@ -28,7 +29,18 @@ public class Phone {
     @ColumnInfo(name = "site")
     private String site;
 
+    @Ignore
     public Phone(@NonNull String manufacturer, @NonNull String model,
+                 @NonNull String androidVersion, @NonNull String site) {
+        // this.id = id;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.androidVersion = androidVersion;
+        this.site = site;
+    }
+
+    // For updating an existing phone
+    public Phone(long id, @NonNull String manufacturer, @NonNull String model,
                  @NonNull String androidVersion, @NonNull String site) {
         this.id = id;
         this.manufacturer = manufacturer;
