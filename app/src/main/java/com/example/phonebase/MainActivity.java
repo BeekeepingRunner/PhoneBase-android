@@ -27,7 +27,10 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
 
     private FloatingActionButton insertButton;
 
-    public static final int INPUT_ACTIVITY_REQUEST = 1;
+    static class ActivityRequest {
+        public static final int ADD_PHONE = 1;
+        public static final int EDIT_PHONE = 2;
+    }
 
     public static final String PHONE_MANUFACTURER_INPUT     = "manufacturer_input";
     public static final String PHONE_MODEL_INPUT            = "model_input";
@@ -73,13 +76,25 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         return super.onOptionsItemSelected(item);
     }
 
+    // Enables editing existing phone
+    @Override
+    public void onItemClickListener(Phone phone) {
+
+        Intent intent = new Intent(MainActivity.this, InputActivity.class);
+        intent.putExtra(PHONE_MANUFACTURER_INPUT, phone.getManufacturer());
+        intent.putExtra(PHONE_MODEL_INPUT, phone.getModel());
+        intent.putExtra(PHONE_ANDROID_VERSION_INPUT, phone.getAndroidVersion());
+        intent.putExtra(PHONE_WEBSITE_INPUT, phone.getSite());
+        startActivityForResult(intent, ActivityRequest.EDIT_PHONE);
+    }
+
     // FAB (FloatingActionButton) causes start of the Input Activity for the user to enter data
     // about a new phone
     private void setInsertionButton() {
         insertButton = findViewById(R.id.fabMain);
         insertButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(MainActivity.this, InputActivity.class);
-            startActivityForResult(intent, INPUT_ACTIVITY_REQUEST);
+            startActivityForResult(intent, ActivityRequest.ADD_PHONE);
         });
     }
 
@@ -88,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == ActivityRequest.ADD_PHONE && resultCode == RESULT_OK) {
             assert data != null;
 
             // save new phone to DB
@@ -100,14 +115,7 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
             );
             phoneViewModel.insert(phone);
         }
-        else if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_CANCELED) {
-            // do nothing
-        }
-    }
-
-    @Override
-    public void onItemClickListener(Phone phone) {
-
-        
+        // if (requestCode == ActivityRequest.EDIT_PHONE && resultCode == RESULT_OK) {
+        // }
     }
 }
