@@ -22,6 +22,8 @@ public class InputActivity extends AppCompatActivity {
     Button cancelButton;
     Button saveButton;
 
+    long phoneId = -1;   // default value in case when it isn't needed for phone edit
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,19 @@ public class InputActivity extends AppCompatActivity {
 
         setEditTextsReferences();
         setCancelButton();
-        setSaveButton();
+
+        Intent intent = getIntent();
+        if (intent.hasExtra(MainActivity.PHONE_MANUFACTURER_INPUT)) {
+            phoneId = intent.getLongExtra(MainActivity.PHONE_ID, -1);
+            manufacturerEditText.setText(intent.getStringExtra(MainActivity.PHONE_MANUFACTURER_INPUT));
+            modelEditText.setText(intent.getStringExtra(MainActivity.PHONE_MODEL_INPUT));
+            androidVersionEditText.setText(intent.getStringExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT));
+            websiteEditText.setText(intent.getStringExtra(MainActivity.PHONE_WEBSITE_INPUT));
+            setActionButton(MainActivity.ActivityRequest.EDIT_PHONE);
+        }
+        else {
+            setActionButton(MainActivity.ActivityRequest.ADD_PHONE);
+        }
     }
 
     void setEditTextsReferences() {
@@ -51,13 +65,17 @@ public class InputActivity extends AppCompatActivity {
     }
 
     // After clicking save button, entered data is passed to the main activity
-    void setSaveButton() {
+    void setActionButton(int actionType) {
         saveButton = findViewById(R.id.save_button);
+        if (actionType == MainActivity.ActivityRequest.EDIT_PHONE) {
+            saveButton.setText(R.string.edit_button);
+        }
 
         saveButton.setOnClickListener((View v) -> {
 
             if (isInputComplete()) {
                 Intent intent = new Intent();
+                intent.putExtra(MainActivity.PHONE_ID, phoneId); // -1 if not needed to edit
                 intent.putExtra(MainActivity.PHONE_MANUFACTURER_INPUT, manufacturerEditText.getText().toString());
                 intent.putExtra(MainActivity.PHONE_MODEL_INPUT, modelEditText.getText().toString());
                 intent.putExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT, androidVersionEditText.getText().toString());

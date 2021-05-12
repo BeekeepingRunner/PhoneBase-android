@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PhoneListAdapter.OnItemClickListener {
 
     private PhoneViewModel phoneViewModel;
     private PhoneListAdapter phoneListAdapter;
@@ -27,8 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton insertButton;
 
-    public static final int INPUT_ACTIVITY_REQUEST = 1;
+    static class ActivityRequest {
+        public static final int ADD_PHONE = 1;
+        public static final int EDIT_PHONE = 2;
+    }
 
+    public static final String PHONE_ID = "phoneId";
     public static final String PHONE_MANUFACTURER_INPUT     = "manufacturer_input";
     public static final String PHONE_MODEL_INPUT            = "model_input";
     public static final String PHONE_ANDROID_VERSION_INPUT  = "android_input";
@@ -73,13 +77,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Enables editing existing phone
+    @Override
+    public void onItemClickListener(Phone phone) {
+
+        Intent intent = new Intent(MainActivity.this, InputActivity.class);
+        intent.putExtra(PHONE_ID, phone.getId());
+        intent.putExtra(PHONE_MANUFACTURER_INPUT, phone.getManufacturer());
+        intent.putExtra(PHONE_MODEL_INPUT, phone.getModel());
+        intent.putExtra(PHONE_ANDROID_VERSION_INPUT, phone.getAndroidVersion());
+        intent.putExtra(PHONE_WEBSITE_INPUT, phone.getSite());
+        startActivityForResult(intent, ActivityRequest.EDIT_PHONE);
+    }
+
     // FAB (FloatingActionButton) causes start of the Input Activity for the user to enter data
     // about a new phone
     private void setInsertionButton() {
         insertButton = findViewById(R.id.fabMain);
         insertButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(MainActivity.this, InputActivity.class);
-            startActivityForResult(intent, INPUT_ACTIVITY_REQUEST);
+            startActivityForResult(intent, ActivityRequest.ADD_PHONE);
         });
     }
 
@@ -88,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == ActivityRequest.ADD_PHONE && resultCode == RESULT_OK) {
             assert data != null;
 
             // save new phone to DB
@@ -100,8 +117,19 @@ public class MainActivity extends AppCompatActivity {
             );
             phoneViewModel.insert(phone);
         }
-        else if (requestCode == INPUT_ACTIVITY_REQUEST && resultCode == RESULT_CANCELED) {
-            // do nothing
+        if (requestCode == ActivityRequest.EDIT_PHONE && resultCode == RESULT_OK) {
+            assert data != null;
+
+            Phone phone = new Phone(
+                    data.getLongExtra(PHONE_ID, -1),
+                    data.getStringExtra(PHONE_MANUFACTURER_INPUT),
+                    data.getStringExtra(PHONE_MODEL_INPUT),
+                    data.getStringExtra(PHONE_ANDROID_VERSION_INPUT),
+                    data.getStringExtra(PHONE_WEBSITE_INPUT)
+            );
+
+            //Toast.makeText(this, "", Toast.LENGTH_LONG).show();
+            phoneViewModel.update(phone);
         }
     }
 }
