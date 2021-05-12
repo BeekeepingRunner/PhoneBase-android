@@ -29,7 +29,18 @@ public class InputActivity extends AppCompatActivity {
 
         setEditTextsReferences();
         setCancelButton();
-        setSaveButton();
+
+        Intent intent = getIntent();
+        if (intent.hasExtra(MainActivity.PHONE_MANUFACTURER_INPUT)) {
+            manufacturerEditText.setText(intent.getStringExtra(MainActivity.PHONE_MANUFACTURER_INPUT));
+            modelEditText.setText(intent.getStringExtra(MainActivity.PHONE_MODEL_INPUT));
+            androidVersionEditText.setText(intent.getStringExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT));
+            websiteEditText.setText(intent.getStringExtra(MainActivity.PHONE_WEBSITE_INPUT));
+            setActionButton(MainActivity.ActivityRequest.EDIT_PHONE);
+        }
+        else {
+            setActionButton(MainActivity.ActivityRequest.ADD_PHONE);
+        }
     }
 
     void setEditTextsReferences() {
@@ -51,8 +62,11 @@ public class InputActivity extends AppCompatActivity {
     }
 
     // After clicking save button, entered data is passed to the main activity
-    void setSaveButton() {
+    void setActionButton(int actionType) {
         saveButton = findViewById(R.id.save_button);
+        if (actionType == MainActivity.ActivityRequest.EDIT_PHONE) {
+            saveButton.setText(R.string.edit_button);
+        }
 
         saveButton.setOnClickListener((View v) -> {
 

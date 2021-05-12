@@ -115,7 +115,10 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
             );
             phoneViewModel.insert(phone);
         }
-        // if (requestCode == ActivityRequest.EDIT_PHONE && resultCode == RESULT_OK) {
-        // }
+        if (requestCode == ActivityRequest.EDIT_PHONE && resultCode == RESULT_OK) {
+            assert data != null;
+
+            Toast.makeText(this, "EDIT!!", Toast.LENGTH_LONG).show();
+        }
     }
 }
