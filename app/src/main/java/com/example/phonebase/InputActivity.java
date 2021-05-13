@@ -3,6 +3,7 @@ package com.example.phonebase;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,6 +22,7 @@ public class InputActivity extends AppCompatActivity {
 
     Button cancelButton;
     Button saveButton;
+    Button websiteButton;
 
     long phoneId = -1;   // default value in case when it isn't needed for phone edit
 
@@ -44,6 +46,8 @@ public class InputActivity extends AppCompatActivity {
         else {
             setActionButton(MainActivity.ActivityRequest.ADD_PHONE);
         }
+
+        setWebsiteButton();
     }
 
     void setEditTextsReferences() {
@@ -111,5 +115,25 @@ public class InputActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    void setWebsiteButton()
+    {
+        websiteButton = findViewById(R.id.website_button);
+
+        websiteButton.setOnClickListener((View v) -> {
+
+            String uri = websiteEditText.getText().toString();
+
+            if (uri.startsWith("http://") || uri.startsWith("https://"))
+            {
+                Intent browserIntent = new Intent("android.intent.action.VIEW",
+                        Uri.parse(websiteEditText.getText().toString()));
+                startActivity(browserIntent);
+            }
+            else {
+                Toast.makeText(this, "Website address is incorrect", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
