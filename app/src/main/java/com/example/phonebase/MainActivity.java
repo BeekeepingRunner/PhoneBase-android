@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+// Existing phone records display
 public class MainActivity extends AppCompatActivity implements PhoneListAdapter.OnItemClickListener {
 
     private PhoneViewModel phoneViewModel;
@@ -46,20 +47,18 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         setContentView(R.layout.activity_main);
 
         // Set RecyclerView, its adapter and ViewModel for display of phone collection
-
         recyclerView = findViewById(R.id.recyclerView);
-        phoneListAdapter = new PhoneListAdapter(this);
 
+        phoneListAdapter = new PhoneListAdapter(this);
         recyclerView.setAdapter(phoneListAdapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         phoneViewModel = new ViewModelProvider(this).get(PhoneViewModel.class);
-
         phoneViewModel.getAllPhones().observe(this,
                 phones -> phoneListAdapter.setPhoneList(phones));
-
+        //
         setItemTouchHelper();
-
         setInsertionButton();
     }
 
@@ -94,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         startActivityForResult(intent, ActivityRequest.EDIT_PHONE);
     }
 
+    // enables to swipe phone records to the left or to the right, deleting them in effect
     private void setItemTouchHelper() {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

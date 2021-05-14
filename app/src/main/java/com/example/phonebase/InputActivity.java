@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.TreeMap;
 
+// Allows to add new phone or edit an existing one. User can go to the specified phone website too.
 public class InputActivity extends AppCompatActivity {
 
     EditText manufacturerEditText;
@@ -34,13 +35,10 @@ public class InputActivity extends AppCompatActivity {
         setEditTextsReferences();
         setCancelButton();
 
+        // User came here, because he wanted either to add or to edit the phone
         Intent intent = getIntent();
         if (intent.hasExtra(MainActivity.PHONE_MANUFACTURER_INPUT)) {
-            phoneId = intent.getLongExtra(MainActivity.PHONE_ID, -1);
-            manufacturerEditText.setText(intent.getStringExtra(MainActivity.PHONE_MANUFACTURER_INPUT));
-            modelEditText.setText(intent.getStringExtra(MainActivity.PHONE_MODEL_INPUT));
-            androidVersionEditText.setText(intent.getStringExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT));
-            websiteEditText.setText(intent.getStringExtra(MainActivity.PHONE_WEBSITE_INPUT));
+            restorePhoneData(intent);
             setActionButton(MainActivity.ActivityRequest.EDIT_PHONE);
         }
         else {
@@ -66,6 +64,14 @@ public class InputActivity extends AppCompatActivity {
             setResult(RESULT_CANCELED, intent);
             finish();
         });
+    }
+
+    void restorePhoneData(Intent intent) {
+        phoneId = intent.getLongExtra(MainActivity.PHONE_ID, -1);
+        manufacturerEditText.setText(intent.getStringExtra(MainActivity.PHONE_MANUFACTURER_INPUT));
+        modelEditText.setText(intent.getStringExtra(MainActivity.PHONE_MODEL_INPUT));
+        androidVersionEditText.setText(intent.getStringExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT));
+        websiteEditText.setText(intent.getStringExtra(MainActivity.PHONE_WEBSITE_INPUT));
     }
 
     // After clicking save button, entered data is passed to the main activity
