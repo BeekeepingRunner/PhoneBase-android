@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         if (item.getItemId() == R.id.clearDataOption) {
 
             phoneViewModel.deleteAll();
+            Toast.makeText(this, "All phones deleted", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
