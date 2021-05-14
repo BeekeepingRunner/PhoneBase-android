@@ -3,8 +3,10 @@ package com.example.phonebase;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         phoneViewModel.getAllPhones().observe(this,
                 phones -> phoneListAdapter.setPhoneList(phones));
 
+        setItemTouchHelper();
+
         setInsertionButton();
     }
 
@@ -88,6 +92,30 @@ public class MainActivity extends AppCompatActivity implements PhoneListAdapter.
         intent.putExtra(PHONE_ANDROID_VERSION_INPUT, phone.getAndroidVersion());
         intent.putExtra(PHONE_WEBSITE_INPUT, phone.getSite());
         startActivityForResult(intent, ActivityRequest.EDIT_PHONE);
+    }
+
+    private void setItemTouchHelper() {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView,
+                                          @NonNull RecyclerView.ViewHolder viewHolder,
+                                          @NonNull RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                        int phoneNum = viewHolder.getAdapterPosition();
+                        List<Phone> phones = phoneViewModel.getAllPhones().getValue();
+                        phoneViewModel.delete(phones.get(phoneNum));
+                        Toast.makeText(MainActivity.this, "Phone deleted", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     // FAB (FloatingActionButton) causes start of the Input Activity for the user to enter data

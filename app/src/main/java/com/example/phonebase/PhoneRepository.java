@@ -33,6 +33,12 @@ public class PhoneRepository {
         });
     }
 
+    void delete(Phone phone) {
+        PhoneRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mPhoneDao.delete(phone);
+        });
+    }
+
     LiveData<List<Phone>> getAllPhones() {
         return mAllPhones;
     }

@@ -2,6 +2,7 @@ package com.example.phonebase;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -20,6 +21,9 @@ public interface PhoneDao {
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     void update(Phone phone);
+
+    @Delete
+    void delete(Phone phone);
 
     @Query("DELETE FROM phone")
     void deleteAll();
