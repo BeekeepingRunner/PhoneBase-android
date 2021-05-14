@@ -27,7 +27,13 @@ public class PhoneViewModel extends AndroidViewModel {
         mRepository.insert(phone);
     }
 
-    public void update(Phone phone) { mRepository.update(phone); }
+    public void update(Phone phone) {
+        mRepository.update(phone);
+    }
+
+    public void delete(Phone phone) {
+        mRepository.delete(phone);
+    }
 
     public LiveData<List<Phone>> getAllPhones() {
         return mAllPhones;
