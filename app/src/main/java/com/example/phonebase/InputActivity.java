@@ -25,12 +25,15 @@ public class InputActivity extends AppCompatActivity {
     Button saveButton;
     Button websiteButton;
 
-    long phoneId = -1;   // default value in case when it isn't needed for phone edit
+    long phoneId;
+    public static final long DEFAULT_PHONE_ID = -1;   // default value in case when it isn't needed for phone edit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
+
+        phoneId = DEFAULT_PHONE_ID;
 
         setEditTextsReferences();
         setCancelButton();
@@ -67,7 +70,7 @@ public class InputActivity extends AppCompatActivity {
     }
 
     void restorePhoneData(Intent intent) {
-        phoneId = intent.getLongExtra(MainActivity.PHONE_ID, -1);
+        phoneId = intent.getLongExtra(MainActivity.PHONE_ID, DEFAULT_PHONE_ID);
         manufacturerEditText.setText(intent.getStringExtra(MainActivity.PHONE_MANUFACTURER_INPUT));
         modelEditText.setText(intent.getStringExtra(MainActivity.PHONE_MODEL_INPUT));
         androidVersionEditText.setText(intent.getStringExtra(MainActivity.PHONE_ANDROID_VERSION_INPUT));
